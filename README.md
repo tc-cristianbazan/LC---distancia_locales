@@ -33,10 +33,10 @@ def ordenar_locales(latitud_usuario, longitud_usuario):
                 local["distancia"] = local["distancia"] = calcular_distancia(latitud_usuario, longitud_usuario, local["latitud"], local["longitud"])
                 print(local["distancia"])
             else:
-                local["distancia"] = float('inf')
+                local["distancia"] = 0
                 
-        locales_con_distancia = [local for local in locales if local["distancia"] != float('inf')]
-        locales_sin_distancia = [local for local in locales if local["distancia"] == float('inf')]
+        locales_con_distancia = [local for local in locales if local["distancia"] != 0]
+        locales_sin_distancia = [local for local in locales if local["distancia"] == 0]
         
         locales_con_distancia.sort(key=lambda x: (x["distancia"], x["nombre"]))
         locales_sin_distancia.sort(key=lambda x: (x["nombre"]))
@@ -45,7 +45,7 @@ def ordenar_locales(latitud_usuario, longitud_usuario):
 ```
 
 Cuando exista posibilidadd de generar distancia debido a que la latitud y longitud no son None (esto deberá ser revisado para adaptar a las condiciones necesarias), se podrá generar el campo de distancia dentro del json o lista que se provee.
-En caso de que no, ese campo obtendrá el valor float('inf). Esto se debe a que el float('inf') permite representar valores imposibilitados de calculo debido a la falta de definición. 
+En caso de que no, ese campo obtendrá el valor de 0
 
 Los datos de prueba para locales fueron los siguientes:
 
